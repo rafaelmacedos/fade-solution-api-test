@@ -53,11 +53,11 @@ public class CustomerDataFactory {
     public static Customer getEmptyCustomer() {
         return new Customer();
     }
-    public static String returnInvalidId() {
+    public static String getInvalidId() {
         return "763224859";
     }
 
-    public static String returnEmptyId() {
+    public static String getEmptyId() {
         return " ";
     }
 

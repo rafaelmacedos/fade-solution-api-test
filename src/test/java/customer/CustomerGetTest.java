@@ -59,7 +59,7 @@ public class CustomerGetTest {
 
     @Test
     public void mustGetCustomerByIdWithInvalidIdWithoutSuccess() {
-        String id = CustomerDataFactory.returnInvalidId();
+        String id = CustomerDataFactory.getInvalidId();
 
         ErrorResponse errorResponse = customerClient.getById(id)
                 .then()
