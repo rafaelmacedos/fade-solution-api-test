@@ -16,8 +16,8 @@ public class Auth {
 
         return authClient.login(adminLoginData)
                 .then()
-                .extract()
-                .path("token")
+                    .extract()
+                    .path("token")
                 ;
     }
 }
