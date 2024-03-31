@@ -7,19 +7,21 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Customer {
+public class Barber {
     private String id;
     private String name;
     private String phoneNumber;
-    private String birthday;
+    private Boolean isOwner;
+    private Boolean isActive;
     private Object[] appointments;
     private String createdAt;
     private String updatedAt;
 
-    public Customer(String name, String phoneNumber, String birthday) {
+    public Barber(String name, String phoneNumber, Boolean isOwner, Boolean isActive) {
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.birthday = birthday;
+        this.isOwner = isOwner;
+        this.isActive = isActive;
     }
 
 }

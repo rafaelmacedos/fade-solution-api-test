@@ -49,7 +49,7 @@ public class CustomerPutTest {
     public void mustUpdateCustomerWithInvalidIdWithoutSuccess() {
         Customer customer = CustomerDataFactory.getCustomerWithUpdatedData();
         customer.setId(null);
-        String id = CustomerDataFactory.returnInvalidId();
+        String id = CustomerDataFactory.getInvalidId();
 
         ErrorResponse errorResponse = customerClient.put(customer, id)
                 .then()

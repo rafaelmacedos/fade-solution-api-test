@@ -24,7 +24,7 @@ public class CustomerDeleteTest {
 
     @Test
     public void mustDeleteCustomerByIdWithInvalidIdWithoutSuccess() {
-        String id = CustomerDataFactory.returnInvalidId();
+        String id = CustomerDataFactory.getInvalidId();
 
         ErrorResponse errorResponse = customerClient.deleteById(id)
                 .then()
@@ -37,7 +37,7 @@ public class CustomerDeleteTest {
 
     @Test
     public void mustDeleteCustomerByIdWithEmptyIdWithoutSuccess() {
-        String id = CustomerDataFactory.returnEmptyId();
+        String id = CustomerDataFactory.getEmptyId();
 
         ErrorResponse errorResponse = customerClient.deleteById(id)
                 .then()
