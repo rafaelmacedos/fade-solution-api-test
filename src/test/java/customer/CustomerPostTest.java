@@ -17,7 +17,7 @@ public class CustomerPostTest {
     private final CustomerClient customerClient = new CustomerClient();
 
     @Test
-    public void mustSaveCustomerWithSuccess() {
+    public void shouldSaveCustomerWithSuccess() {
         Customer customer = CustomerDataFactory.validCustomer();
 
         Customer postResponse = customerClient.post(customer)
