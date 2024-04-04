@@ -1,40 +1,40 @@
 package client;
 
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import model.Barber;
+import io.restassured.response.*;
+import model.Product;
 import utils.Auth;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 
-public class BarberClient extends BaseClient {
-    private static final String BARBERS = "barbers";
+public class ProductClient extends BaseClient {
+    private static final String PRODUCTS = "products";
     private static final String TOKEN = Auth.tokenAdmin();
 
-    public BarberClient() {
+    public ProductClient() {
         BaseClient.initConfig();
     }
 
-    public Response post(Barber barber) {
+    public Response post(Product product) {
         return
                 given()
                         .header("Authorization", TOKEN)
                         .contentType(ContentType.JSON)
-                        .body(barber)
+                        .body(product)
                         .when()
-                            .post(BARBERS)
+                            .post(PRODUCTS)
                 ;
     }
 
-    public Response put(Barber barber, String id) {
+    public Response put(Product product, String id) {
         return
                 given()
                         .header("Authorization", TOKEN)
                         .contentType(ContentType.JSON)
                         .pathParam("id", id)
-                        .body(barber)
+                        .body(product)
                         .when()
-                            .put(BARBERS + "/{id}")
+                            .put(PRODUCTS + "/{id}")
                 ;
     }
 
@@ -44,29 +44,29 @@ public class BarberClient extends BaseClient {
                         .header("Authorization", TOKEN)
                         .contentType(ContentType.JSON)
                         .when()
-                            .get(BARBERS + "/all")
+                            .get(PRODUCTS + "/all")
                 ;
     }
 
-    public Response getById(String barberId) {
+    public Response getById(String productId) {
         return
                 given()
                         .header("Authorization", TOKEN)
                         .contentType(ContentType.JSON)
-                        .pathParam("id", barberId)
+                        .pathParam("id", productId)
                         .when()
-                            .get(BARBERS + "/byId/{id}")
+                            .get(PRODUCTS + "/byId/{id}")
                 ;
     }
 
-    public Response deleteById(String barberId) {
+    public Response deleteById(String productId) {
         return
                 given()
                         .header("Authorization", TOKEN)
                         .contentType(ContentType.JSON)
-                        .pathParam("id", barberId)
+                        .pathParam("id", productId)
                         .when()
-                            .delete(BARBERS + "/{id}")
+                            .delete(PRODUCTS + "/{id}")
                 ;
     }
 
