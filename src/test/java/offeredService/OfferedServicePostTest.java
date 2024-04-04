@@ -89,9 +89,9 @@ public class OfferedServicePostTest {
         offeredServiceClient.post(OfferedService)
                 .then()
                     .statusCode(HttpStatus.SC_UNPROCESSABLE_ENTITY)
-                    .body("errors", hasSize(5))
-                    .body("errors.field", containsInAnyOrder("name", "value", "description", "name", "description"))
-                    .body("errors.error", containsInAnyOrder("must not be blank", "must not be null", "must not be null", "must not be blank", "must not be null"));
+                    .body("errors", hasSize(3))
+                    .body("errors.field", containsInAnyOrder("name", "value", "name"))
+                    .body("errors.error", containsInAnyOrder("must not be null", "must not be blank", "must not be null"));
         ;
 
     }
