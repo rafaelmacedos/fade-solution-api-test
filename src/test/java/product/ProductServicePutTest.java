@@ -2,9 +2,13 @@ package product;
 
 import client.ProductClient;
 import dataFactory.ProductDataFactory;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import model.ErrorResponse;
 import model.Product;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -14,12 +18,15 @@ import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ProductServicePutTest {
+class ProductServicePutTest {
     private final ProductClient productClient = new ProductClient();
     private final ZoneId zoneId = ZoneId.systemDefault();
 
     @Test
-    public void mustUpdateProductWithSuccess() {
+    @DisplayName("Update a Product by valid ID using valid data with success")
+    @Description("This test attempts to update an existent product in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldUpdateProductWithSuccess() {
         Product product = ProductDataFactory.getProductWithUpdatedData();
 
         Product putResponse = productClient.put(product, product.getId())
@@ -48,7 +55,10 @@ public class ProductServicePutTest {
     }
 
     @Test
-    public void mustUpdateProductWithInvalidIdWithoutSuccess() {
+    @DisplayName("Update a Product by invalid ID using valid data without success")
+    @Description("This test attempts to update an existent product in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldUpdateProductWithInvalidIdWithoutSuccess() {
         Product product = ProductDataFactory.getProductWithUpdatedData();
         product.setId(null);
         String id = ProductDataFactory.getInvalidId();

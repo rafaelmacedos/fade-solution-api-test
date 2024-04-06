@@ -2,18 +2,25 @@ package offeredService;
 
 import client.OfferedServiceClient;
 import dataFactory.OfferedServiceDataFactory;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import model.OfferedService;
 import model.ErrorResponse;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class OfferedServiceDeleteTest {
+class OfferedServiceDeleteTest {
     private final OfferedServiceClient offeredServiceClient = new OfferedServiceClient();
 
     @Test
-    public void mustDeleteOfferedServiceByIdWithSuccess() {
+    @DisplayName("OfferedService deletion by valid id test with success")
+    @Description("This test attempts to delete an already saved offeredService.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldDeleteOfferedServiceByIdWithSuccess() {
         OfferedService offeredService = OfferedServiceDataFactory.getOfferedServiceFromAPI();
 
         offeredServiceClient.deleteById(offeredService.getId())
@@ -22,7 +29,10 @@ public class OfferedServiceDeleteTest {
     }
 
     @Test
-    public void mustDeleteOfferedServiceByIdWithInvalidIdWithoutSuccess() {
+    @DisplayName("OfferedService deletion by invalid ID test without success")
+    @Description("This test attempts to delete an already saved offeredService using an invalid Id.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldDeleteOfferedServiceByIdWithInvalidIdWithoutSuccess() {
         String id = OfferedServiceDataFactory.getInvalidId();
 
         ErrorResponse errorResponse = offeredServiceClient.deleteById(id)
@@ -35,7 +45,10 @@ public class OfferedServiceDeleteTest {
     }
 
     @Test
-    public void mustDeleteOfferedServiceByIdWithEmptyIdWithoutSuccess() {
+    @DisplayName("OfferedService deletion by empty ID test without success")
+    @Description("This test attempts to delete an already saved offeredService using an empty Id.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldDeleteOfferedServiceByIdWithEmptyIdWithoutSuccess() {
         String id = OfferedServiceDataFactory.getEmptyId();
 
         ErrorResponse errorResponse = offeredServiceClient.deleteById(id)

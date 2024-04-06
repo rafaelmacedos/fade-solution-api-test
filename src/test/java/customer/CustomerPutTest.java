@@ -2,9 +2,13 @@ package customer;
 
 import client.CustomerClient;
 import dataFactory.CustomerDataFactory;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import model.Customer;
 import model.ErrorResponse;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -14,12 +18,15 @@ import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CustomerPutTest {
+class CustomerPutTest {
     private final CustomerClient customerClient = new CustomerClient();
     private final ZoneId zoneId = ZoneId.systemDefault();
 
     @Test
-    public void mustUpdateCustomerWithSuccess() {
+    @DisplayName("Update a Customer by valid ID using valid data with success")
+    @Description("This test attempts to update an existent customer in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldUpdateCustomerWithSuccess() {
         Customer customer = CustomerDataFactory.getCustomerWithUpdatedData();
 
         Customer putResponse = customerClient.put(customer, customer.getId())
@@ -46,7 +53,10 @@ public class CustomerPutTest {
     }
 
     @Test
-    public void mustUpdateCustomerWithInvalidIdWithoutSuccess() {
+    @DisplayName("Update a Customer by invalid ID using valid data without success")
+    @Description("This test attempts to update an existent customer in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldUpdateCustomerWithInvalidIdWithoutSuccess() {
         Customer customer = CustomerDataFactory.getCustomerWithUpdatedData();
         customer.setId(null);
         String id = CustomerDataFactory.getInvalidId();

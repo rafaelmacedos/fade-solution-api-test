@@ -2,9 +2,13 @@ package offeredService;
 
 import client.OfferedServiceClient;
 import dataFactory.OfferedServiceDataFactory;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import model.OfferedService;
 import model.ErrorResponse;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -14,12 +18,15 @@ import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OfferedServicePutTest {
+class OfferedServicePutTest {
     private final OfferedServiceClient offeredServiceClient = new OfferedServiceClient();
     private final ZoneId zoneId = ZoneId.systemDefault();
 
     @Test
-    public void mustUpdateOfferedServiceWithSuccess() {
+    @DisplayName("Update a OfferedService by valid ID using valid data with success")
+    @Description("This test attempts to update an existent offeredService in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldUpdateOfferedServiceWithSuccess() {
         OfferedService offeredService = OfferedServiceDataFactory.getOfferedServiceWithUpdatedData();
 
         OfferedService putResponse = offeredServiceClient.put(offeredService, offeredService.getId())
@@ -46,7 +53,10 @@ public class OfferedServicePutTest {
     }
 
     @Test
-    public void mustUpdateOfferedServiceWithInvalidIdWithoutSuccess() {
+    @DisplayName("Update a OfferedService by invalid ID using valid data without success")
+    @Description("This test attempts to update an existent offeredService in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldUpdateOfferedServiceWithInvalidIdWithoutSuccess() {
         OfferedService OfferedService = OfferedServiceDataFactory.getOfferedServiceWithUpdatedData();
         OfferedService.setId(null);
         String id = OfferedServiceDataFactory.getInvalidId();
