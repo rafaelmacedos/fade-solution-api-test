@@ -2,21 +2,27 @@ package offeredService;
 
 import client.OfferedServiceClient;
 import dataFactory.OfferedServiceDataFactory;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import model.OfferedService;
 import model.ErrorResponse;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OfferedServiceGetTest {
-
+class OfferedServiceGetTest {
     private final OfferedServiceClient offeredServiceClient = new OfferedServiceClient();
 
     @Test
-    public void mustGetAllOfferedServicesWithSuccess() {
+    @DisplayName("Get all offeredServices with success")
+    @Description("This test attempts to find all offeredService saved in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldGetAllOfferedServicesWithSuccess() {
         OfferedService[] getAllResponse = offeredServiceClient.getAll()
                 .then()
                     .statusCode(HttpStatus.SC_OK)
@@ -34,7 +40,10 @@ public class OfferedServiceGetTest {
     }
 
     @Test
-    public void mustGetOfferedServiceByIdWithSuccess() {
+    @DisplayName("Get a OfferedService by valid ID with success")
+    @Description("This test attempts to find an already saved offeredService using an valid Id.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldGetOfferedServiceByIdWithSuccess() {
         OfferedService offeredService = OfferedServiceDataFactory.getOfferedServiceFromAPI();
 
         OfferedService getByIdResponse = offeredServiceClient.getById(offeredService.getId())
@@ -54,7 +63,10 @@ public class OfferedServiceGetTest {
     }
 
     @Test
-    public void mustGetOfferedServiceByIdWithInvalidIdWithoutSuccess() {
+    @DisplayName("Get a OfferedService by invalid ID without success")
+    @Description("This test attempts to find an already saved offeredService using an invalid Id.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldGetOfferedServiceByIdWithInvalidIdWithoutSuccess() {
         String id = OfferedServiceDataFactory.getInvalidId();
 
         ErrorResponse errorResponse = offeredServiceClient.getById(id)

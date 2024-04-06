@@ -2,8 +2,12 @@ package barber;
 
 import client.BarberClient;
 import dataFactory.BarberDataFactory;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import model.Barber;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -13,11 +17,14 @@ import java.time.format.DateTimeFormatter;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BarberPostTest {
+class BarberPostTest {
     private final BarberClient BarberClient = new BarberClient();
 
     @Test
-    public void mustSaveBarberWithSuccess() {
+    @DisplayName("Save a new valid Barber test with success")
+    @Description("This test attempts to save a new valid barber in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveBarberWithSuccess() {
         Barber barber = BarberDataFactory.validBarber();
 
         Barber postResponse = BarberClient.post(barber)
@@ -46,7 +53,10 @@ public class BarberPostTest {
     }
 
     @Test
-    public void mustSaveBarberWithEmptyNameWithoutSuccess() {
+    @DisplayName("Save an invalid Barber test without success")
+    @Description("This test attempts to save a new invalid barber in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveBarberWithEmptyNameWithoutSuccess() {
         Barber barber = BarberDataFactory.getBarberWithEmptyName();
 
         BarberClient.post(barber)
@@ -58,7 +68,10 @@ public class BarberPostTest {
     }
 
     @Test
-    public void mustSaveBarberWithEmptyPhoneNumberWithoutSuccess() {
+    @DisplayName("Save an invalid Barber test without success")
+    @Description("This test attempts to save a new invalid barber in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveBarberWithEmptyPhoneNumberWithoutSuccess() {
         Barber barber = BarberDataFactory.getBarberWithEmptyPhoneNumber();
 
         BarberClient.post(barber)
@@ -71,7 +84,10 @@ public class BarberPostTest {
     }
 
     @Test
-    public void mustSaveBarberWithEmptyIsOwnerWithoutSuccess() {
+    @DisplayName("Save an invalid Barber test without success")
+    @Description("This test attempts to save a new invalid barber in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveBarberWithEmptyIsOwnerWithoutSuccess() {
         Barber barber = BarberDataFactory.getBarberWithEmptyIsOwner();
 
         BarberClient.post(barber)
@@ -84,7 +100,10 @@ public class BarberPostTest {
     }
 
     @Test
-    public void mustSaveBarberWithInvalidPhoneNumberWithoutSuccess() {
+    @DisplayName("Save an invalid Barber test without success")
+    @Description("This test attempts to save a new invalid barber in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveBarberWithInvalidPhoneNumberWithoutSuccess() {
         Barber barber = BarberDataFactory.getBarberWithInvalidPhoneNumber();
 
         BarberClient.post(barber)
@@ -97,7 +116,10 @@ public class BarberPostTest {
     }
 
     @Test
-    public void mustSaveBarberWithEmptyDataWithoutSuccess() {
+    @DisplayName("Save an invalid Barber test without success")
+    @Description("This test attempts to save a new invalid barber in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveBarberWithEmptyDataWithoutSuccess() {
         Barber barber = BarberDataFactory.getEmptyBarber();
 
         BarberClient.post(barber)

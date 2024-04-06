@@ -2,8 +2,12 @@ package offeredService;
 
 import client.OfferedServiceClient;
 import dataFactory.OfferedServiceDataFactory;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import model.OfferedService;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -13,11 +17,14 @@ import java.time.format.DateTimeFormatter;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OfferedServicePostTest {
+class OfferedServicePostTest {
     private final OfferedServiceClient offeredServiceClient = new OfferedServiceClient();
 
     @Test
-    public void mustSaveOfferedServiceWithSuccess() {
+    @DisplayName("Save a new valid OfferedService test with success")
+    @Description("This test attempts to save a new valid offeredService in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveOfferedServiceWithSuccess() {
         OfferedService offeredService = OfferedServiceDataFactory.validOfferedService();
 
         OfferedService postResponse = offeredServiceClient.post(offeredService)
@@ -45,7 +52,10 @@ public class OfferedServicePostTest {
     }
 
     @Test
-    public void mustSaveOfferedServiceWithEmptyNameWithoutSuccess() {
+    @DisplayName("Save an invalid OfferedService test without success")
+    @Description("This test attempts to save a new invalid offeredService in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveOfferedServiceWithEmptyNameWithoutSuccess() {
         OfferedService offeredService = OfferedServiceDataFactory.getOfferedServiceWithEmptyName();
 
         offeredServiceClient.post(offeredService)
@@ -57,7 +67,10 @@ public class OfferedServicePostTest {
     }
 
     @Test
-    public void mustSaveOfferedServiceWithEmptyValueWithoutSuccess() {
+    @DisplayName("Save an invalid OfferedService test without success")
+    @Description("This test attempts to save a new invalid offeredService in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveOfferedServiceWithEmptyValueWithoutSuccess() {
         OfferedService OfferedService = OfferedServiceDataFactory.getOfferedServiceWithEmptyValue();
 
         offeredServiceClient.post(OfferedService)
@@ -70,7 +83,10 @@ public class OfferedServicePostTest {
     }
 
     @Test
-    public void mustSaveOfferedServiceWithNegativeValue() {
+    @DisplayName("Save an invalid OfferedService test without success")
+    @Description("This test attempts to save a new invalid offeredService in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveOfferedServiceWithNegativeValue() {
         OfferedService OfferedService = OfferedServiceDataFactory.getOfferedServiceWithNegativeValue();
 
         offeredServiceClient.post(OfferedService)
@@ -83,7 +99,10 @@ public class OfferedServicePostTest {
     }
 
     @Test
-    public void mustSaveOfferedServiceWithEmptyDataWithoutSuccess() {
+    @DisplayName("Save an invalid OfferedService test without success")
+    @Description("This test attempts to save a new invalid offeredService in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveOfferedServiceWithEmptyDataWithoutSuccess() {
         OfferedService OfferedService = OfferedServiceDataFactory.getEmptyOfferedService();
 
         offeredServiceClient.post(OfferedService)

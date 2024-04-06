@@ -1,8 +1,12 @@
 package customer;
 
 import client.CustomerClient;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import model.Customer;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import dataFactory.CustomerDataFactory;
 
@@ -13,11 +17,14 @@ import java.time.format.DateTimeFormatter;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CustomerPostTest {
+class CustomerPostTest {
     private final CustomerClient customerClient = new CustomerClient();
 
     @Test
-    public void shouldSaveCustomerWithSuccess() {
+    @DisplayName("Save a new valid Customer test with success")
+    @Description("This test attempts to save a new valid customer in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveCustomerWithSuccess() {
         Customer customer = CustomerDataFactory.validCustomer();
 
         Customer postResponse = customerClient.post(customer)
@@ -45,7 +52,10 @@ public class CustomerPostTest {
     }
 
     @Test
-    public void mustSaveCustomerWithEmptyNameWithoutSuccess() {
+    @DisplayName("Save an invalid Customer test without success")
+    @Description("This test attempts to save a new invalid customer in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveCustomerWithEmptyNameWithoutSuccess() {
         Customer customer = CustomerDataFactory.getCustomerWithEmptyName();
 
         customerClient.post(customer)
@@ -57,7 +67,10 @@ public class CustomerPostTest {
     }
 
     @Test
-    public void mustSaveCustomerWithEmptyPhoneNumberWithoutSuccess() {
+    @DisplayName("Save an invalid Customer test without success")
+    @Description("This test attempts to save a new invalid customer in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveCustomerWithEmptyPhoneNumberWithoutSuccess() {
         Customer customer = CustomerDataFactory.getCustomerWithEmptyPhoneNumber();
 
         customerClient.post(customer)
@@ -70,7 +83,10 @@ public class CustomerPostTest {
     }
 
     @Test
-    public void mustSaveCustomerWithBirthdayWithoutSuccess() {
+    @DisplayName("Save an invalid Customer test without success")
+    @Description("This test attempts to save a new invalid customer in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveCustomerWithBirthdayWithoutSuccess() {
         Customer customer = CustomerDataFactory.getCustomerWithEmptyBirthday();
 
         customerClient.post(customer)
@@ -83,7 +99,10 @@ public class CustomerPostTest {
     }
 
     @Test
-    public void mustSaveCustomerWithInvalidPhoneNumberWithoutSuccess() {
+    @DisplayName("Save an invalid Customer test without success")
+    @Description("This test attempts to save a new invalid customer in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveCustomerWithInvalidPhoneNumberWithoutSuccess() {
         Customer customer = CustomerDataFactory.getCustomerWithInvalidPhoneNumber();
 
         customerClient.post(customer)
@@ -96,7 +115,10 @@ public class CustomerPostTest {
     }
 
     @Test
-    public void mustSaveCustomerWithEmptyDataWithoutSuccess() {
+    @DisplayName("Save an invalid Customer test without success")
+    @Description("This test attempts to save a new invalid customer in the database.")
+    @Severity(SeverityLevel.NORMAL)
+    void shouldSaveCustomerWithEmptyDataWithoutSuccess() {
         Customer customer = CustomerDataFactory.getEmptyCustomer();
 
         customerClient.post(customer)
