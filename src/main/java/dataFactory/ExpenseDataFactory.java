@@ -19,7 +19,7 @@ public class ExpenseDataFactory {
 
     public static Expense newExpense() {
         String barberId = BarberDataFactory.getBarberFromAPI().getId();
-        String description = FAKER.lorem().sentence(30);
+        String description = FAKER.lorem().sentence(10);
 
         String[] expenseTypeList = {"PRODUCT_ACQUISITION", "HIRED_SERVICE", "RENT_BILL", "WATER_BILL", "ENERGY_BILL", "INTERNET_BILL", "FOOD", "DEDUCTION", "OTHER"};
         Random random = new Random();
@@ -87,7 +87,7 @@ public class ExpenseDataFactory {
         Expense expense = getExpenseFromAPI();
         String barberId = BarberDataFactory.getBarberFromAPI().getId();
         expense.setBarberId(barberId);
-        expense.setDescription(FAKER.lorem().sentence(30));
+        expense.setDescription(FAKER.lorem().sentence(10));
 
         String[] expenseTypeList = {"PRODUCT_ACQUISITION", "HIRED_SERVICE", "RENT_BILL", "WATER_BILL", "ENERGY_BILL", "INTERNET_BILL", "FOOD", "DEDUCTION", "OTHER"};
         Random random = new Random();
