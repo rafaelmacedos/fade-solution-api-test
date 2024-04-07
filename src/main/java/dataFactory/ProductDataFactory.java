@@ -24,7 +24,7 @@ public class ProductDataFactory {
         int randomIndex = random.nextInt(brandList.length);
         String brand = brandList[randomIndex];
 
-        String description = FAKER.lorem().characters(5, 40, true);
+        String description = FAKER.lorem().sentence(30);
         Double price = FAKER.number().randomDouble(2, 10, 700);
         Integer quantityInStock = FAKER.number().numberBetween(1, 100);
         Integer commissionPercentage = FAKER.number().numberBetween(10, 50);
@@ -88,12 +88,12 @@ public class ProductDataFactory {
         Product product = getProductFromAPI();
         product.setName(FAKER.commerce().productName());
 
-        String[] brandList = {"BABOON", "CABALLEROS", "KIRKLAND", "DON ALCIDES", "BLEND ORIGINAL", "VIKING", "ALFA LOOKS"};
+        String[] brandList = {"BABOON", "CABALLEROS", "KIRKLAND", "DON ALCIDES", "BLEND ORIGINAL", "VIKING", "ALFA LOOKS", "FOX"};
         Random random = new Random();
         int randomIndex = random.nextInt(brandList.length);
         product.setBrand(brandList[randomIndex]);
 
-        product.setDescription(FAKER.lorem().characters(5, 40, true));
+        product.setDescription(FAKER.lorem().sentence(30));
         product.setPrice(FAKER.number().randomDouble(2, 10, 700));
         product.setQuantityInStock(FAKER.number().numberBetween(1, 100));
         product.setCommissionPercentage(FAKER.number().numberBetween(10, 500));

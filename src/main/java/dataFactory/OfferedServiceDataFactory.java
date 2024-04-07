@@ -17,7 +17,7 @@ public class OfferedServiceDataFactory {
 
     public static OfferedService newOfferedService() {
         String name = FAKER.commerce().productName();
-        String description = FAKER.lorem().characters(5, 40, true);
+        String description = FAKER.lorem().sentence(30);
         Double value = FAKER.number().randomDouble(2, 10, 300);
 
         return new OfferedService(name, description, value);
@@ -78,7 +78,7 @@ public class OfferedServiceDataFactory {
     public static OfferedService getOfferedServiceWithUpdatedData() {
         OfferedService offeredService = getOfferedServiceFromAPI();
         offeredService.setName(FAKER.lorem().characters(5, 40, true));
-        offeredService.setDescription(FAKER.commerce().productName());
+        offeredService.setDescription(FAKER.lorem().sentence(30));
         offeredService.setValue(FAKER.number().randomDouble(2, 10, 300));
         offeredService.setCreatedAt(null);
         offeredService.setUpdatedAt(null);
