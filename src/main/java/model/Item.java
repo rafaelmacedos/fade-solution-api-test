@@ -21,4 +21,12 @@ public class Item {
         this.soldQuantity = soldQuantity;
     }
 
+    public Item(Product product, Integer soldQuantity) {
+        this.id = product.getId();
+        this.name = product.getName();
+        this.brand = product.getBrand();
+        this.price = product.getPrice();
+        this.soldQuantity = soldQuantity;
+    }
+
 }
