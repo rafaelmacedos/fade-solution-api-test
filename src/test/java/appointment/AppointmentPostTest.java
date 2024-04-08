@@ -90,7 +90,7 @@ public class AppointmentPostTest {
     @DisplayName("Save an invalid Appointment test without success")
     @Description("This test attempts to save a new invalid appointment in the database.")
     @Severity(SeverityLevel.NORMAL)
-    void shouldSaveAppointmentWithEmptyStatus() {
+    void shouldSaveAppointmentWithEmptyItemsList() {
         Appointment appointment = AppointmentDataFactory.getAppointmentWithEmptyItemsList();
 
         appointmentClient.post(appointment)
